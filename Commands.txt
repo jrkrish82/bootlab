@@ -247,13 +247,6 @@ cf push moviefun -p target/moviefun.war
 
 mvn clean package -DskipTests -Dmaven.test.skip=true
 
-"jdbcUrl": "jdbc:mysql://10.0.16.64:3306/cf_6470e3b2_89a8_46d7_b80b_23edf412e92e?user=u3fnHLL8h4ErqW3q\u0026password=4NIzCUoBy2ntt519",
-     "name": "cf_6470e3b2_89a8_46d7_b80b_23edf412e92e",
-     "password": "4NIzCUoBy2ntt519",
-     "port": 3306,
-     "uri": "mysql://u3fnHLL8h4ErqW3q:4NIzCUoBy2ntt519@10.0.16.64:3306/cf_6470e3b2_89a8_46d7_b80b_23edf412e92e?reconnect=true",
-     "username": "u3fnHLL8h4ErqW3q"
-
 
 cf set-env moviefun MOVIEFUN_DATASOURCES_MOVIES_URL jdbc:mysql://10.0.16.64:3306/cf_6470e3b2_89a8_46d7_b80b_23edf412e92e?user=u3fnHLL8h4ErqW3q\u0026password=4NIzCUoBy2ntt519
 
@@ -281,27 +274,6 @@ cf bind-service moviefun cloud-bus albums-mysql
 ./gradlew replatformingRemovingReadsFromFileSystem -PmovieFunUrl=https://moviefun-boisterous-puku.apps.cumuluslabs.io
 
 
-
-
-"aws-s3": [
-   {
-    "credentials": {
-     "access_key_id": "AKIAJ3HNVXOPXILHVGSQ",
-     "bucket": "cf-e33db99f-eef7-420f-92f7-a15526543f26",
-     "region": "ap-southeast-1",
-     "secret_access_key": "oaqumRcbZwiJP8K0reb2nS2MBAeJ8V96qfSN7tnh"
-    },
-    "label": "aws-s3",
-    "name": "moviefun-s3",
-    "plan": "standard",
-    "provider": null,
-    "syslog_drain_url": null,
-    "tags": [],
-    "volume_mounts": []
-   }
-cf set-env moviefun S3_ACCESSKEY AKIAJ3HNVXOPXILHVGSQ
-cf set-env moviefun S3_SECRETKEY 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
-cf set-env moviefun S3_BUCKETNAME cf-e33db99f-eef7-420f-92f7-a15526543f26
 
 
 /Users/maclab/bootlab/app-replatform/s3/apps-movie-fun-code
@@ -347,9 +319,7 @@ source /Users/maclab/.bashrc
 $ MOVIE_FUN_URL=http://moviefun.example.com ./gradlew test
 
 
-export S3_ACCESSKEY=D8NRB2PM6ZUJNOMQL7XQ
-export S3_SECRETKEY=8qXi/laDWz+E+Ntwq9pymF1t0M0AHGbIRcy+/viP
-export S3_BUCKETNAME=moviefun
+
 
 
 cf push moviefun -p build/libs/moviefun-1.1.0-SNAPSHOT.war
