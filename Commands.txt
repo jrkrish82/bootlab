@@ -338,6 +338,38 @@ cf push moviefun -p applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SN
 
 ./gradlew modernizationMicroservices -PmovieFunUrl=https://movie-fun-app-kr.apps.cumuluslabs.io
 
+cf ssh -N -L 63306:10.0.16.64:3306 album-service -k
+cf ssh -L 63306:10.0.16.64:3306 moviefun
+
+
+mysql -u l3lvU1IHvoc6QgQV -h127.0.0.1 -P63306 -p -e"SHOW DATABASES;"
+
+
+  
+
+cf ssh -N -L 63306:10.0.16.64:3306 album-service -k
+
+
+./gradlew modernizationMigrations -PmovieFunUrl=https://movie-fun-app-kr.apps.cumuluslabs.io
+
+cf create-service p-identity basic-sso movie-fun-sso
+basic-sso
+
+
+Username: user
+Password: keepitsimple
+
+./gradlew modernizationSecurity -PmovieFunUrl=https://movie-fun-app-kr.apps.cumuluslabs.io -PuaaUsername=user -PuaaPassword=keepitsimple
+
+./gradlew modernizationServiceDiscovery -PmovieFunUrl=https://movie-fun-app-kr.apps.cumuluslabs.io -PuaaUsername=user -PuaaPassword=keepitsimple
+
+./gradlew modernizationConfigServer -PmovieFunUrl=https://movie-fun-app-kr.apps.cumuluslabs.io -PuaaUsername=user -PuaaPassword=keepitsimple
+
+
+./gradlew modernizationCircuitBreaker -PmovieFunUrl=https://movie-fun-app-kr.apps.cumuluslabs.io -PuaaUsername=user -PuaaPassword=keepitsimple
+
+
+
 
 
 
